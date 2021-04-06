@@ -30,12 +30,17 @@ const initialTodos: Todo[] = [
 
 function App() {
 
-  
+  //Tasks with states to be updated
   const [todos, setTodos] = useState(initialTodos);
 
+  //
   const toggleTodo = (selectedTodo: Todo) => {
+    
+    //change the state of an existing task if selected to the opposite state
+    //and since the data is saved in an array we use map() to update it 
     const newTodos = todos.map(todo => {
       if(todo === selectedTodo){
+        //return the task with a different boolean value
         return {
           ...todo,
           complete: !todo.complete,
@@ -43,9 +48,10 @@ function App() {
       }
       return todo;
     });
-    setTodos(newTodos);
+    setTodos(newTodos); //the updated state
   };
 
+  //Adding tasks to the arrary of todos
   const addTodo: AddTodo = (text: string) => {
     const newTodo = {text, complete: false};
     setTodos([...todos, newTodo]);
